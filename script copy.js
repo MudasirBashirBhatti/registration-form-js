@@ -14,14 +14,14 @@ let emailError = document.querySelector('.emailError')
 let phoneError = document.querySelector('.phoneError')
 let passwordError = document.querySelector('.passwordError')
 let pwdCheckError = document.querySelector('.pwdCheckError')
-let inputText = document.querySelectorAll('.inputText');
-let popup = document.querySelector('.popup');
-let blank = document.querySelector('.blank');
-let popBtn = document.querySelector(".popBtn");
 
 let input = document.querySelectorAll('input');
 
 
+
+function disableBtnInitially(e){
+    btn.disabled = e
+}
 function errormsg(fieldName,text){
     fieldName.classList.add('show')
     fieldName.classList.remove('errorHide')
@@ -40,40 +40,9 @@ function errorMsgHide(field){
 }
 
 for(input of input){
-
-    // code for initial button clicked 
-    btn.addEventListener('click',function(e){
-        e.preventDefault()
-        for(ints of inputText){
-            ints.classList.add('animation')
-            ints.style.background='rgba(255,0,0,0.3)'
-        }
-            setTimeout(function(){
-                for(ints of inputText){
-                    ints.classList.remove('animation')
-                }
-            },3000)
-
-            popup.style.transform ="scale(1) rotate(360deg)"
-            blank.style.transform="scale(1)"
-
-            popBtn.addEventListener('click',()=>{
-                popup.style.transform= "scale(0)"
-                blank.style.transform = "scale(0)"
-            })
-    })
-    // code for iniatil button clicked end
-
-
-
-
 input.addEventListener('keyup',(e)=>{
     e.preventDefault()
 
-    for(ints of inputText){
-        ints.style.background = 'linear-gradient(to right, rgba(0, 67, 167, 0.50), rgb(0, 174, 255, 0.50))'
-        ints.classList.remove('animation');
-    }
 
     // username validation 
     if(user.value === ""){
@@ -156,39 +125,22 @@ if(myKeys(0) || myKeys(1) || myKeys(2) || myKeys(3) || myKeys(4)){
     btn.disabled=false;
     btn.addEventListener('click',function(e){
         e.preventDefault();
-
-        // this will apply when input has some text 
-        popup.style.transform="scale(0)"
-        blank.style.transform="scale(0)"
-
         btn.value='Fields are not properly filled'
         btn.classList.add('animation')
         setInterval(function(){
             btn.classList.remove('animation')
         },3000)
-
-    for(ints of inputText){
-        ints.style.background = 'linear-gradient(to right, rgba(0, 67, 167, 0.50), rgb(0, 174, 255, 0.50))'
-        ints.classList.remove('animation');
-    }
-
-    
     })
 }else{
     let form = document.querySelector('form');
     btn.disabled = false
-    btn.classList.remove('disabledBtn')
     btn.value='Submit Form'
-    btn.addEventListener('click',function(){
-        form.submit();
-        btn.value='Submit Form'
-
-        for(ints of inputText){
-            ints.value = ""
-        }
-    })
+    btn.classList.remove('disabledBtn')
+    btn.addEventListener('click',function(){form.submit(); btn.value='SubmitForm'})
 }
 })
 }
+
+
 
 
